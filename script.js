@@ -2,15 +2,13 @@
 var generateBtn = document.querySelector("#generate");
 
 // Character lists
-const lowercaseCharList = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'];
-const uppercaseCharList = ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z'];
-const numericCharList = ['1','2','3','4','5','6','7','8','9','0'];
-const specialCharList = ['!','"','#','$','%','&',"'",'(',')','*','+',',','-','.','/',':',';','<','=','>','?','@','[','\\',"]",'^',"_",'`','{','|','}','~'];
+const lowercaseCharList = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
+const uppercaseCharList = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
+const numericCharList = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0'];
+const specialCharList = ['!', '"', '#', '$', '%', '&', "'", '(', ')', '*', '+', ',', '-', '.', '/', ':', ';', '<', '=', '>', '?', '@', '[', '\\', "]", '^', "_", '`', '{', '|', '}', '~'];
 
 const generatePassword = function () {
 
-  let passLength = 0;
- 
   // Confirm lowercase, uppercase, numeric, and/or special characters
   const lowercaseChar = confirm('Do you want your password to have lowercase characters?');
   const uppercaseChar = confirm('Do you want your password to have uppercase characters?');
@@ -21,20 +19,22 @@ const generatePassword = function () {
     alert("You must choose at least one character type!");
     generatePassword();
   }
-   // Pick a password length, if not valid start at this step not character step
-  const passLengthFunc = function () {
-
-   const passLength = prompt('How long would you like your password to be (min 8 characters/max 128 characters)?');
-
-  if ((passLength >= 8 && passLength < 129) !== true) {
-    alert("Your password must be min 8 characters and max 128 characters!");
-    passLengthFunc();
-  }
-  return passLength;
-  }
+  // Pick a password length, if not valid start at this step not character step
+  var passLengthFunc = function () {
+    let passLength = 0;
+    passLength = prompt('How long would you like your password to be (min 8 characters/max 128 characters)?');
+    console.log("this one1:" + passLength)
+    if (passLength >= 8 && passLength < 129) {
+      console.log("this one2:" + passLength)
+      return passLength;
+    } else {
+      alert("Your password must be min 8 characters and max 128 characters!");
+      return passLengthFunc();
+    }
+  };
 
   var passLengthNum = passLengthFunc();
-
+  console.log('varlength logged:' + passLengthNum)
 
   let listSelect = [];
 
@@ -52,24 +52,19 @@ const generatePassword = function () {
   }
 
   console.log(listSelect);
-  
+
   let i = 0;
   let passwordNew = '';
-  for (i=0; i <= passLengthNum-1; i++) {  
-    // generate random between 0 ~ 
+  for (i = 0; i <= passLengthNum - 1; i++) {
+    // generate random between 0 ~ character array length
     const randomNum = Math.floor(Math.random() * listSelect.length);
-    // console.log(randomNum);
-    passwordNew=passwordNew+listSelect[randomNum];
+    // Add each new character to password
+    passwordNew = passwordNew + listSelect[randomNum];
     // console.log(passwordNew)
   }
 
-return passwordNew;
+  return passwordNew;
 }
-
-
-// build list of potential characters
-
-
 
 
 // Write password to the #password input
@@ -83,4 +78,6 @@ function writePassword() {
 
 // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
+
+
 
