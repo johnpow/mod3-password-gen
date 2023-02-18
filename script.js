@@ -36,6 +36,7 @@ const generatePassword = function () {
   var passLengthNum = passLengthFunc();
   console.log('varlength logged:' + passLengthNum)
 
+  // generate an empty array and fill it with the arrays based on the users inputs
   let listSelect = [];
 
   if (lowercaseChar) {
@@ -52,7 +53,7 @@ const generatePassword = function () {
   }
 
   console.log(listSelect);
-
+// build a password based on a looping function that takes the users desired length and then randomly selects from the array built above
   let i = 0;
   let passwordNew = '';
   for (i = 0; i <= passLengthNum - 1; i++) {
