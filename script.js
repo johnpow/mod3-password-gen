@@ -1,5 +1,7 @@
+// updated from var to let in many cases on 2.22.2023 with tutor
+
 // Assignment Code
-var generateBtn = document.querySelector("#generate");
+let generateBtn = document.querySelector("#generate");
 
 // Character lists
 const lowercaseCharList = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
@@ -20,12 +22,12 @@ const generatePassword = function () {
     generatePassword();
   }
   // Pick a password length, if not valid start at this step not character step
-  var passLengthFunc = function () {
-    let passLength = 0;
-    passLength = prompt('How long would you like your password to be (min 8 characters/max 128 characters)?');
-    console.log("this one1:" + passLength)
-    if (passLength >= 8 && passLength < 129) {
-      console.log("this one2:" + passLength)
+  const passLengthFunc = function () {
+    // let passLength = 0; // dont think this is needed
+    let  passLength = prompt('How long would you like your password to be (min 8 characters/max 128 characters)?');
+    // console.log("this one1:" + passLength) 
+    if (passLength >= 8 && passLength <= 128) { 
+      // console.log("this one2:" + passLength)
       return passLength;
     } else {
       alert("Your password must be min 8 characters and max 128 characters!");
@@ -33,8 +35,8 @@ const generatePassword = function () {
     }
   };
 
-  var passLengthNum = passLengthFunc();
-  console.log('varlength logged:' + passLengthNum)
+  let passLengthNum = passLengthFunc();
+  // console.log('varlength logged:' + passLengthNum)
 
   // generate an empty array and fill it with the arrays based on the users inputs
   let listSelect = [];
@@ -52,10 +54,9 @@ const generatePassword = function () {
     listSelect = listSelect.concat(specialCharList);
   }
 
-  console.log(listSelect);
+  // console.log(listSelect);
 // build a password based on a looping function that takes the users desired length and then randomly selects from the array built above
-  let i = 0;
-  let passwordNew = '';
+  let passwordNew = ''; // this seems to be needed
   for (i = 0; i <= passLengthNum - 1; i++) {
     // generate random between 0 ~ character array length
     const randomNum = Math.floor(Math.random() * listSelect.length);
@@ -68,10 +69,10 @@ const generatePassword = function () {
 }
 
 
-// Write password to the #password input
+// Write password to the #password input 
 function writePassword() {
-  var password = generatePassword();
-  var passwordText = document.querySelector("#password");
+  let password = generatePassword();
+  let passwordText = document.querySelector("#password");
 
   passwordText.value = password;
 
@@ -79,6 +80,3 @@ function writePassword() {
 
 // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
-
-
-
