@@ -19,7 +19,7 @@ const generatePassword = function () {
 
   if ((lowercaseChar || uppercaseChar || numericChar || specialChar) === false) {
     alert("You must choose at least one character type!");
-    generatePassword();
+    return generatePassword();
   }
   // Pick a password length, if not valid start at this step not character step
   const passLengthFunc = function () {
